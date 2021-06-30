@@ -26,7 +26,6 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
 import { ModalDialogService } from './services/modal-dialog.service';
-import { EmpresasComponent } from './components/empresas/empresas.component';
 import { EmpresasService } from './services/empresas.service';
 
 @NgModule({
