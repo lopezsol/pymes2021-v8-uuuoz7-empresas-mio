@@ -60,7 +60,7 @@
       </tr>
     </tbody>
   </table>
-  </div>
+</div>
 
 <!--No se encontraron registros-->
 <div id="divMsjFormBusqueda" class="alert alert-info" *ngIf="AccionABMC == 'L' && Items?.length== 0">
@@ -78,21 +78,21 @@
         Razon Social <span class="text-danger">*</span>
       </label>
       <div class="col-sm-6">
-        <input 
-          type="text" 
+        <input
+          type="text"
           name="RazonSocial"
-          class="form-control text-uppercase" 
-          formControlName="RazonSocial" 
-          [ngClass]="{'is-invalid':(FormRegistro.controls.RazonSocial.touched || submitted) && FormRegistro.controls.RazonSocial.errors}" 
+          class="form-control text-uppercase"
+          formControlName="RazonSocial"
+          [ngClass]="{'is-invalid':(FormRegistro.controls.RazonSocial.touched || submitted) && FormRegistro.controls.RazonSocial.errors}"
         />
-        <span 
-          class="text-danger" 
+        <span
+          class="text-danger"
           *ngIf="(FormRegistro.controls.RazonSocial.touched || submitted) && FormRegistro.controls.RazonSocial.errors && FormRegistro.controls.RazonSocial.errors.required "
           >
           Dato requerido
         </span>
-        <span 
-          class="text-danger" 
+        <span
+          class="text-danger"
           *ngIf="(FormRegistro.controls.RazonSocial.touched || submitted) && (FormRegistro.controls.RazonSocial.errors?.minlength || FormRegistro.controls.RazonSocial.errors?.maxlength)"
         >
           Dato texto de 5 a 50 caracteres</span>
@@ -101,34 +101,34 @@
 
     <!--campo cantidad de empleados-->
     <div class="form-group row">
-    <label
+      <label
       class="col-form-label col-sm-2 offset-sm-2"
       for="CantidadEmpleados"
     >
       Cantidad de empleados <span class="text-danger">*</span>
     </label>
-    <div class="col-sm-6">
-      <input
+      <div class="col-sm-6">
+        <input
         type="text"
         name="CantidadEmpleados"
         class="form-control"
         formControlName="CantidadEmpleados"
         [ngClass]="{'is-invalid': (FormRegistro.controls.CantidadEmpleados.touched || submitted)  && FormRegistro.controls.CantidadEmpleados.errors}"
       />
-      <span
+        <span
         class="text-danger"
         *ngIf="(FormRegistro.controls.CantidadEmpleados.touched || submitted) && FormRegistro.controls.CantidadEmpleados.errors && FormRegistro.controls.CantidadEmpleados.errors.required "
       >
         Dato requerido
       </span>
-      <span
+        <span
         class="text-danger"
         *ngIf="(FormRegistro.controls.CantidadEmpleados.touched || submitted) && FormRegistro.controls.CantidadEmpleados.errors?.pattern"
       >
         Dato numérico, 1 a 10 dígitos.
       </span>
+      </div>
     </div>
-  </div>
 
     <!--campo FechaFundacion-->
     <div class="form-group row">

@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Empresa } from '../../models/empresa';
@@ -29,28 +28,29 @@ export class EmpresasComponent implements OnInit {
 
   submitted: boolean = false;
 
-
   FormBusqueda: FormGroup;
   FormRegistro: FormGroup;
 
   constructor(
     public formBuilder: FormBuilder,
     private empresasService: EmpresasService,
-    
     private modalDialogService: ModalDialogService
   ) {}
 
   ngOnInit() {
-    
+    this.empresasService.get().subscribe((res: Empresa[]) => {
+      this.Items = res;
+    });
+
     this.FormRegistro = this.formBuilder.group({
       IdEmpresa: [null],
       RazonSocial: [
         null,
-        [Validators.required, Validators.minLength(5), Validators.maxLength(50)]
+        [ Validators.minLength(5), Validators.maxLength(50)]
       ],
-      
+
       CantidadEmpleados: [null, [Validators.required, Validators.maxLength(7)]],
-      
+
       FechaFundacion: [
         null,
         [
@@ -59,15 +59,13 @@ export class EmpresasComponent implements OnInit {
             '(0[1-9]|[12][0-9]|3[01])[-/](0[1-9]|1[012])[-/](19|20)[0-9]{2}'
           )
         ]
-      ],
+      ]
     });
-
   }
-
 
   Agregar() {
     this.AccionABMC = 'A';
-    this.FormRegistro.reset({  IdEmpresa: 0 });
+    this.FormRegistro.reset({ IdEmpresa: 0 });
     this.submitted = false;
     this.FormRegistro.markAsUntouched();
   }
@@ -92,18 +90,17 @@ export class EmpresasComponent implements OnInit {
 
       //formatear fecha de  ISO 8061 a string dd/MM/yyyy
       var arrFecha = itemCopy.FechaFundacion.substr(0, 10).split('-');
-      itemCopy.FechaFundacion = arrFecha[2] + '/' + arrFecha[1] + '/' + arrFecha[0];
+      itemCopy.FechaFundacion =
+        arrFecha[2] + '/' + arrFecha[1] + '/' + arrFecha[0];
 
       this.FormRegistro.patchValue(itemCopy);
       this.AccionABMC = AccionABMC;
     });
   }
 
-
   Consultar(Dto) {
     this.BuscarPorId(Dto, 'C');
   }
-
 
   // grabar tanto altas como modificaciones
   Grabar() {
@@ -169,6 +166,7 @@ export class EmpresasComponent implements OnInit {
   // Volver desde Agregar/Modificar
   Volver() {
     this.AccionABMC = 'L';
+    this.Buscar();
   }
 
   ImprimirListado() {
